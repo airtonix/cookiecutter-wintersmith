@@ -1,0 +1,55 @@
+extends page
+
+block aside-html
+
+block content-html
+	.text-centered
+		ul.methods.small-block-grid-2.large-block-grid-4
+			li: a(href='http://plus.google.com/+zenobiusjiricek/')
+				em.icon-2x.icon-googleplus-rect
+				br
+				| google+
+			li: a(href='http://twitter.com/airtonix/')
+				em.icon-2x.icon-twitter
+				br
+				| twitter
+			li: a(href='http://au.linkedin.com/in/zenobiusjiricek')
+				em.icon-2x.icon-linkedin
+				br
+				| linkedin
+			li: a(href='tel:+61451075636')
+				em.icon-2x.icon-mobile
+				br
+				| phone
+
+	.column.large-12.large-centered
+		form(method='post',
+			 data-action="submit",
+			 data-module="contact-form",
+			 data-apikey=mandril?mandril.apikey:'',
+			 data-endpoint=mandril?mandril.endpoint:'',
+			 data-scout-event='submit')
+			input(name="name", type="text", placeholder="your name", required)
+			input(name="email", type="email", placeholder="your email", required)
+			textarea(name="message", placeholder="your message", rows=7, required)
+			button.button.simple-outline.small(type="submit") Send
+
+		.modal.success(data-module='modal')
+			.cell
+				em.icon-paper-plane
+				h5 Your message has been sent.
+				button.button.simple-outline.small(data-action='click', data-emit='[data-module="contact-form"]:reset') Ok
+
+		.modal.sending(data-module='modal')
+			.cell
+				em.icon-cloud
+				h5 Sending
+
+		.modal.error(data-module='modal')
+			.cell
+				em.icon-fire
+				h5 Error
+					small Something went wrong whilst sending your message.
+				button.button.simple-outline.small(data-action='click', data-emit='[data-module="contact-form"]:reset')  Ok
+
+

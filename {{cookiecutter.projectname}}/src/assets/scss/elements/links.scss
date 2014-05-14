@@ -1,0 +1,15 @@
+html body a {
+	color: $link-color;
+
+	&:hover, &:focus{
+		color: $link-hover-color;
+	}
+
+	&:active{
+		color: $link-active-color;
+	}
+
+	&:visited{
+		color: $link-visited-color;
+	}
+}

@@ -1,0 +1,24 @@
+extends page
+
+block append vars
+	- bodyclass = 'page article-detail'
+
+block append content-title
+	- page.metadata.subtitle = moment.utc(page.metadata.date).format('DD. MMMM YYYY')
+	if page.metadata.author
+		small.author
+			| #{ "Written by " }
+			mixin author(page.metadata.author)
+
+block prepend content-html
+	if page.metadata.tags
+		#article-tags.row
+			ul.sub-nav.centered.icon-tag
+				each tag in page.metadata.tags.split(",")
+					li.secondary.radius=tag
+
+block append content-html
+	#disqus_thread(data-action="load", data-emit="disqus-threads-loaded")
+
+block append content
+	include partial/post-footer

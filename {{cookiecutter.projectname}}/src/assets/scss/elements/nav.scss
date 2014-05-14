@@ -1,0 +1,208 @@
+html body {
+
+	.sub-nav {
+		&.centered {
+			text-align: center;
+			display: inline-block;
+			li {
+				display: inline;
+				float: inherit;
+				line-height: 3;
+			}
+		}
+	}
+	
+	header nav.top-bar{
+		position: absolute;
+		width: 100%;
+		z-index: 200;
+		.toggle-topbar.menu-icon{
+			@include radius(2px);
+			@include box-shadow(0 1px 0 $topbar-menu-border-color);
+			border: 1px solid $topbar-menu-border-color;
+			padding:0 1em 0 1em;
+			text-align: left;
+			&:after{
+				margin-right: 1em;
+			}
+		}
+
+		&.expanded{
+
+			.toggle-topbar.menu-icon{
+				border-color: $topbar-menu-border-color;
+				@include box-shadow(none);
+			}
+
+			.top-bar-section{
+				overflow: auto;
+				margin-bottom: 1em;
+				border-bottom: 1px solid darken($topbar-bg-color, 5%);
+			}
+		}
+	}
+
+	article {
+
+		#page-content {
+			.aside {
+				width: 3em;
+			}
+			.toc {
+				width: 3em;
+				z-index: 100;
+				position: absolute;
+				top: 0.5em;
+				right: 0;
+				min-height: 2em;
+
+				.link {
+					width: 3em;
+					height: 3em;
+					background-color: white;
+					padding: 0.8em;
+					display: block;
+					position: relative;
+					z-index: 100;
+				}
+
+				& > ul,
+				& > ol {
+					text-align: right;
+					
+					li.h3,
+					li.h4,
+					li.h5,
+					li.h6 {
+						small.block {
+							clear: both;
+							display: block;
+							font-size: 0.8em;
+							color: $secondary-tint;
+						}
+					}
+
+					li.h3 {
+						text-indent: 1em;
+					}
+					li.h4,
+					li.h5,
+					li.h6 {
+						text-indent: 1.5em;
+						font-size: 80%;
+						opacity: 0.8;
+					}
+					li.h5 {
+						text-indent: 2em;
+					}
+					li.h6 {
+						text-indent: 2.2em;
+					}
+				}
+				
+				&.sticky {
+					position: fixed;
+				}
+
+			}
+
+			@media #{$small-up} {
+				position: relative;
+				.aside {
+					position: absolute;
+					top: 0;
+					left: 0;
+				}
+
+				.toc {
+
+					.toggle {
+						cursor: inherit;
+						color: $primary-tint;
+					}
+
+					& > ul ,
+					& > ol {
+						display: none;
+						text-align: right;
+						background: $primary-tint;
+						position: relative;
+						top: -3em;
+						left: 3em;
+						min-width: 18em;
+						width: 100%;
+						text-align: left;
+						padding: 1em;
+					}
+
+					&.enabled {
+						.toggle {
+							color: $firm;
+							cursor: pointer;
+						}
+						&.expanded {
+							$border: darken($primary-tint, 10%);
+							.toggle {
+								border-top: 1px solid $border;
+								border-left: 1px solid $border;
+								border-bottom: 1px solid $border;
+								background: $primary-tint;
+							}
+							& > ul ,
+							& > ol {
+								border: 1px solid $border;
+								margin-left: -1px;
+								display: inline-block;
+							}
+						}
+					}
+
+					&.sticky {
+						position: fixed;
+					}
+
+				}
+
+			}
+
+			@media #{$large-up} {
+				.aside {
+					min-width: 13em;
+					height: 100%;
+					.toc {
+						width: 100%;
+						.link {
+							float: right;
+							clear: both;
+						}
+						.toggle {
+							background-color: $primary-tint;
+						}
+						& > ul ,
+						& > ol {
+							direction:rtl;
+							left: inherit;
+							position: static;
+							float: right;
+							display: block;
+							text-align: right;
+						}
+
+						&.expanded {
+							.toggle,
+							& > ul,
+							& > ol {
+								border: none;
+								margin-left: inherit;
+								display: block;
+							}
+						}
+					}
+				}
+			}
+
+		}
+
+	}
+
+}

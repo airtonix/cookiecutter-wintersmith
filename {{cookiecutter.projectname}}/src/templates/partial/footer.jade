@@ -1,0 +1,7 @@
+.row
+	section.text-centered.copy
+		p &copy; #{ new Date().getFullYear() } #{ site.owner.name }
+		ul.sub-nav.centered
+			li: a(href="#{site.url}/contact/"): span.icon-inbox
+
+		p: small v#{ pkg.npm.version } ( #{ new Date().toJSON().slice(0,10) } )

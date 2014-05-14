@@ -1,0 +1,25 @@
+extends layout
+
+block append vars
+	- bodyclass = 'page'
+
+block prepend title
+	| #{ (page&&page.title?page.title + " - ":"").toLowerCase()}
+
+block content
+	#page-header.row
+		block content-title
+			include partial/page-header
+		
+	block content-body
+		#page-content.row
+			.large-8.columns.large-centered.content
+				block content-html
+					if page.html
+						!= typogr(page.html).typogrify()
+
+			.large-4.columns.aside
+				block aside-html
+					.side-nav.toc(data-module='toc', data-content="#page-content > .content", data-toggle=".toggle", data-sticky)
+						a.link(href="../", title="Back"): span.icon-left-open-outline
+						a.link.toggle(title="Table of contents"): span.icon-flow-split
